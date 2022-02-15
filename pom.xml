@@ -116,7 +116,7 @@
 					<username>${git.user}</username>
 					<password>${git.password}</password>
 					<flowInitContext>
-						<masterBranchName>main</masterBranchName>
+						<masterBranchName>master</masterBranchName>
 						<developBranchName>develop</developBranchName>
 					</flowInitContext>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
