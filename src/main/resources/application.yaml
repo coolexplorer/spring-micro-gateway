@@ -17,3 +17,11 @@ server:
   title: spring-micro-gateway
   version: '@project.version@'
   port: 8080
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "gateway"
