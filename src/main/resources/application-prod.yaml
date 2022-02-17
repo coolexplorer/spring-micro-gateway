@@ -17,3 +17,36 @@ server:
   title: spring-micro-gateway
   version: '@project.version@'
   port: 80
+
+# kafka
+kafka:
+  bootstrap:
+    addresses: localhost:9092
+  consumer:
+    groupId: gateway
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "gateway"
+
+# logging
+logging:
+  file:
+    name: logs/gateway.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: logs/auth-%d{yyyy-MM-dd}.%i.log
+      max-file-size: 100MB
+      total-size-cap: 1GB
+      max-history: 7
+      clean-history-on-start: false
+  level:
+    org:
+      springframework:
+        security: INFO
+    io:
+      coolexplorer: DEBUG
