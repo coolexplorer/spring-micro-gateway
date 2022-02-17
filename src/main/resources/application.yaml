@@ -3,20 +3,35 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: login
+          uri: http://localhost:8180/
+          predicates:
+            - Path=/api/*/login,/api/*/signup/**
         - id: auth
           uri: http://localhost:8180/
           predicates:
-            - Path=/api/*/auth/**,/api/*/accout/**,/api/*/login,/api/*/signup/**
+            - Path=/api/*/auth/**,/api/*/accout/**
+          filters:
+            - Authentication
         - id: session
           uri: http://localhost:8280/
           predicates:
             - Path=/api/*/session/**
+          filters:
+            - Authentication
 
 # server
 server:
   title: spring-micro-gateway
   version: '@project.version@'
   port: 8080
+
+# kafka
+kafka:
+  bootstrap:
+    addresses: localhost:9092
+  consumer:
+    groupId: gateway
 
 # actuator
 management:
@@ -25,3 +40,21 @@ management:
       exposure:
         include:
           - "gateway"
+
+# logging
+logging:
+  file:
+    name: logs/gateway.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: logs/auth-%d{yyyy-MM-dd}.%i.log
+      max-file-size: 100MB
+      total-size-cap: 1GB
+      max-history: 7
+      clean-history-on-start: false
+  level:
+    org:
+      springframework:
+        security: INFO
+    io:
+      coolexplorer: DEBUG
