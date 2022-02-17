@@ -1,7 +1,7 @@
 [![dockeri.co](https://dockeri.co/image/coolexplorer/spring-micro-gateway)](https://hub.docker.com/r/coolexplorer/spring-micro-auth)
 
 [![CodeQL](https://github.com/coolexplorer/spring-micro-gateway/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/coolexplorer/spring-micro-gateway/actions/workflows/codeql-analysis.yml)
-<!---[![Maven Package](https://github.com/coolexplorer/spring-micro-gateway/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/coolexplorer/spring-micro-gateway/actions/workflows/maven-publish.yml)-->[![docker](https://github.com/coolexplorer/spring-micro-gateway/actions/workflows/docker.yml/badge.svg)](https://github.com/coolexplorer/spring-micro-gateway/actions/workflows/docker.yml)
+[![docker](https://github.com/coolexplorer/spring-micro-gateway/actions/workflows/docker.yml/badge.svg)](https://github.com/coolexplorer/spring-micro-gateway/actions/workflows/docker.yml)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/coolexplorer/spring-micro-gateway)
 
 # spring-micro-gateway
