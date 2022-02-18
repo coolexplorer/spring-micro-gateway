@@ -55,7 +55,7 @@ public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFac
 
             if (!containsAuthHeader(request)) {
                 try {
-                    return createErrorResponse(response, ErrorCode.AUTH_HEADER_NOT_FOUND);
+                    return onError(response, ErrorCode.AUTH_HEADER_NOT_FOUND);
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
@@ -64,7 +64,7 @@ public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFac
             String jwtToken = resolveToken(request);
             try {
                 if (!sendJwtTokenValidation(jwtToken)) {
-                    return createErrorResponse(response, ErrorCode.JWT_TOKEN_INVALID);
+                    return onError(response, ErrorCode.JWT_TOKEN_INVALID);
                 }
             } catch (ExecutionException | InterruptedException | JsonProcessingException | TimeoutException e) {
                 e.printStackTrace();
@@ -78,7 +78,7 @@ public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFac
         return request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION);
     }
 
-    private Mono<Void> createErrorResponse(ServerHttpResponse response, ErrorCode errorCode) throws JsonProcessingException {
+    private Mono<Void> onError(ServerHttpResponse response, ErrorCode errorCode) throws JsonProcessingException {
         ErrorResponse errorResponse = new ErrorResponse()
                 .setCode(errorCode)
                 .setDescription(errorMessageSourceAccessor.getMessage(errorCode.getMessageKey()));
