@@ -1,4 +1,4 @@
-FROM adoptopenjdk:11-jre-hotspot
+FROM adoptopenjdk:16-jre-hotspot
 
 ARG JAR_FILE=./target/*.jar
 ARG PROFILE
