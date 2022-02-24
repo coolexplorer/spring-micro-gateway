@@ -41,7 +41,7 @@
 		<spring-cloud.version>2021.0.0</spring-cloud.version>
 
 		<modelMapper.version>2.4.4</modelMapper.version>
-		<openapi.version>1.6.3</openapi.version>
+		<openapi.version>1.6.6</openapi.version>
 		<commons.lang3.version>3.12.0</commons.lang3.version>
 
 		<!-- Jgit Configuration -->
