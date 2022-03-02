@@ -1,5 +1,10 @@
 # spring
 spring:
+  application:
+    name: gateway
+  devtools:
+    livereload:
+      enabled: true
   cloud:
     gateway:
       routes:
@@ -11,14 +16,10 @@ spring:
           uri: http://localhost:8180/
           predicates:
             - Path=/api/*/auth/**,/api/*/accout/**
-          filters:
-            - Authentication
         - id: session
           uri: http://localhost:8280/
           predicates:
             - Path=/api/*/session/**
-          filters:
-            - Authentication
 
 # server
 server:
@@ -29,9 +30,11 @@ server:
 # kafka
 kafka:
   bootstrap:
-    addresses: localhost:9092
+    addresses: ${spring.embedded.kafka.brokers:localhost:9092}
   consumer:
     groupId: gateway
+  test:
+    topic: test.topic
 
 # actuator
 management:
@@ -52,7 +55,7 @@ logging:
     name: logs/gateway.log
   logback:
     rollingpolicy:
-      file-name-pattern: logs/auth-%d{yyyy-MM-dd}.%i.log
+      file-name-pattern: logs/gateway-%d{yyyy-MM-dd}.%i.log
       max-file-size: 100MB
       total-size-cap: 1GB
       max-history: 7
@@ -61,5 +64,9 @@ logging:
     org:
       springframework:
         security: INFO
+        cloud:
+          gateway: DEBUG
+    reactor:
+      netty: DEBUG
     io:
       coolexplorer: DEBUG
