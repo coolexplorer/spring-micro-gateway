@@ -3,14 +3,22 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: login
+          uri: http://localhost:8180/
+          predicates:
+            - Path=/api/*/login,/api/*/signup/**
         - id: auth
           uri: http://localhost:8180/
           predicates:
-            - Path=/api/*/auth/**,/api/*/accout/**,/api/*/login,/api/*/signup/**
+            - Path=/api/*/auth/**,/api/*/accout/**
+          filters:
+            - Authentication
         - id: session
           uri: http://localhost:8280/
           predicates:
             - Path=/api/*/session/**
+          filters:
+            - Authentication
 
 # server
 server:
@@ -32,6 +40,11 @@ management:
       exposure:
         include:
           - "gateway"
+
+# documentation
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 
 # logging
 logging:

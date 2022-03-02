@@ -1,5 +1,10 @@
 # spring
 spring:
+  application:
+    name: gateway
+  devtools:
+    livereload:
+      enabled: true
   cloud:
     gateway:
       routes:
@@ -40,6 +45,11 @@ management:
       exposure:
         include:
           - "gateway"
+
+# documentation
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 
 # logging
 logging:
