@@ -1,5 +1,10 @@
 # spring
 spring:
+  application:
+    name: gateway
+  devtools:
+    livereload:
+      enabled: true
   cloud:
     gateway:
       routes:
@@ -41,13 +46,18 @@ management:
         include:
           - "gateway"
 
+# documentation
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
 # logging
 logging:
   file:
     name: logs/gateway.log
   logback:
     rollingpolicy:
-      file-name-pattern: logs/auth-%d{yyyy-MM-dd}.%i.log
+      file-name-pattern: logs/gateway-%d{yyyy-MM-dd}.%i.log
       max-file-size: 100MB
       total-size-cap: 1GB
       max-history: 7
@@ -56,5 +66,9 @@ logging:
     org:
       springframework:
         security: INFO
+        cloud:
+          gateway: DEBUG
+    reactor:
+      netty: DEBUG
     io:
       coolexplorer: DEBUG
